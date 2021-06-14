@@ -1,0 +1,35 @@
+<div class="question" id="question_<%= index %>" data-index=<%= index %> data-qid=<%= question.id %>>
+<%= pform.fields_for :questions, question do |form| %>
+  <hr>
+  <% if question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul>
+        <% question.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+  <%= form.text_field :label, placeholder: 'Question label...', class: 'questions_label' %>
+  <%= link_to 'X', 'javascript:void(0);', class: 'question_remove_link' %>  
+  </div>
+  
+  <div class="field">
+  <%= form.text_area :desc, name: "test[questions_attributes][#{index}][desc]", placeholder: 'Question description...', class: 'questions_desc' %>
+  </div>
+  
+  <div class="options" id="options">
+    <%= render partial: 'admin/tests/questions/option', locals: {question_index: index, option: Option.new, index: 0} %>
+    <% question.options.each_with_index do |o, i| %>
+      <%= render partial: 'admin/tests/questions/option', locals: {question_index: index, option: o, index: i+1} %>
+    <% end %>    
+  </div>
+  <%  %>
+  <%= form.check_box :_destroy if question.id %>
+<% end %>
+<%= button_tag '+ Option', type: 'button', id: 'add_option_btn', data: {question_index: index} %>
+</div>

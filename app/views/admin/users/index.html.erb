@@ -1,0 +1,26 @@
+<%= button_to 'New user', new_user_path, :method => :get %><br>
+
+<table border="1">
+<thead>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Role</th>
+    <th>Action</th>
+  </tr>
+</thead>
+
+<tbody>
+<% @users.each do |user| %>
+<tr>
+  <td><%= link_to user.name, user %></td>
+  <td><%= user.email %></td>
+  <td><%= user.role %></td>
+  <td>
+    <%= link_to 'Edit', [:edit, user] %>
+    <%= link_to('Delete', user_path(user), method: :delete, data: { confirm: 'Are you sure?' }) if user != current_user %>
+  </td>
+</tr>
+<% end %>
+</tbody>
+</table>

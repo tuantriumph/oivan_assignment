@@ -1,0 +1,23 @@
+<table>
+  <tr>
+  <td>
+    <%= button_to 'Back', admin_tests_path, :method => :get %>
+  </td>
+  <td>
+    <%= button_to 'Edit', edit_admin_test_path(@test), :method => :get %>
+  </td>
+  </tr>
+</table>
+
+<p>
+  <strong>Name:</strong>
+  <%= @test.name %>
+</p>
+
+<p>
+  <strong>Desc:</strong>
+  <%= @test.desc %>
+</p>
+
+<%= link_to 'Edit', edit_admin_test_path(@test) %> |
+<%= link_to 'Back', admin_tests_path %>

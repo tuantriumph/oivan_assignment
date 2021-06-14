@@ -1,0 +1,26 @@
+<%= button_to 'New test', new_test_path, :method => :get %>
+<br>
+<table border="1">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Questions</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tests.each do |test| %>
+      <tr>
+        <td><%= link_to test.name, test %></td>
+        <td><%= test.desc %></td>
+        <td><%= test.questions.count %></td>
+        <td>
+          <%= link_to 'Edit', [:edit, test] %> 
+          <%= link_to 'Delete', test_path(test), method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

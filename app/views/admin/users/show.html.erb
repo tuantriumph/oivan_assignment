@@ -1,0 +1,22 @@
+<table>
+<tr>
+<td><%= button_to 'Back', users_path, :method => :get %></td>
+<td><%= button_to 'Edit', edit_user_path(@user), :method => :get %></td>
+<td><%= button_to 'Delete', [:admin, @user], :method => :delete %></td>
+</tr>
+</table>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Role:</strong>
+  <%= @user.role %>
+</p>

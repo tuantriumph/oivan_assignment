@@ -1,0 +1,33 @@
+// Place all the styles related to the Admin::Tests controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.question {
+  padding-left: 10px;
+  padding-bottom: 10px;
+  
+  .options {
+    padding-left: 15px;
+    padding-bottom: 5px;
+  }
+  
+  #option_0 {
+    display: none;
+  }
+  
+  input[type=checkbox][id$="_destroy"] {
+    display: none;
+  }
+}
+
+#question_0 {
+  display: none;
+}
+
+#blank_question_form {
+  display: none;
+}
+
+#blank_option_form {
+  display: none;
+}
