@@ -8,7 +8,7 @@ class Question < ApplicationRecord
   validate :valid_options, on: [:create, :update]
   
   #
-  #before_validation :init_options
+  before_validation :init_options
   after_initialize :init_options  
   before_save :store_options
   

@@ -45,7 +45,7 @@ RSpec.describe 'Student API', type: :request do
       it "get all tests" do
         get "/api/v1/student/all_tests", params: {}, headers: headers_with_token(token)
         
-        #p response.body
+        p response.body
         expect(response.content_type).to eq("application/json; charset=utf-8")
         expect(response).to have_http_status(:ok)
         expect(response_body).to be_an_instance_of(Array)
@@ -56,7 +56,7 @@ RSpec.describe 'Student API', type: :request do
           test_id = @test_ids.first
           get "/api/v1/student/get_test/#{test_id}", params: {}, headers: headers_with_token(token)
           
-          p response.body
+          p JSON.parse(response.body)
           expect(response.content_type).to eq("application/json; charset=utf-8")
           expect(response).to have_http_status(:ok)
           expect(response_body).to be_an_instance_of(Hash)

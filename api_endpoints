@@ -1,0 +1,112 @@
+API end-points:
+
+1. Login to get authentication token
+  URL: /api/v1/login
+  PARAMS: { :email => email, :password => password }
+  METHOD: POST
+  
+  Response:    
+    + Success: 
+      - Status: 200
+      - Response: {'auth_token' => '...'}      
+      auth_token is used for next API call, its need to be inside request's header as headers['Authorization']
+      
+    + Failure
+      - Status: 401      
+      account not exists.
+
+2. Get all available tests
+  URL: /api/v1/student/all_tests
+  PARAMS: none
+  METHOD: GET
+  
+  Response:
+    + Failure
+      - Status 401
+        account not authorized
+        
+    + Success:
+      - Status: 200
+      - Response:
+        [{"id"=>33, 
+         "name"=>"Math test", 
+         "desc"=>"Do the math test", 
+         "questions"=>
+            [
+              {"label"=>"1+1=", 
+               "desc"=>"Simple math 1", 
+               "options"=>
+                    [
+                      {"text"=>"2", "correct"=>true}, 
+                      {"text"=>"1+1=0", "correct"=>false}, 
+                      {"text"=>"3", "correct"=>false}
+                    ]
+               }, 
+                {"label"=>"axb=", 
+                 "desc"=>"Simple math 3", 
+                 "options"=>
+                    [
+                      {"text"=>"2", "correct"=>false}, 
+                      {"text"=>"3", "correct"=>false}, 
+                      {"text"=>"unknown", "correct"=>true}
+                    ]
+                 }
+             ]
+        }]
+  
+3. Get one test 
+  URL: /api/v1/student/get_test/:id
+  PARAMS: {:id => id}
+  METHOD: GET
+  
+  Response:
+    + Failure
+    
+    + Success:
+      - Status: 200
+      - Response:
+        Response:
+    + Failure
+      - Status 401
+        account not authorized
+        
+    + Success:
+      - Status: 200
+      - Response:
+        {"id"=>33, 
+         "name"=>"Math test", 
+         "desc"=>"Do the math test", 
+         "questions"=>
+            [
+              {"label"=>"1+1=", 
+               "desc"=>"Simple math 1", 
+               "options"=>
+                    [
+                      {"text"=>"2", "correct"=>true}, 
+                      {"text"=>"1+1=0", "correct"=>false}, 
+                      {"text"=>"3", "correct"=>false}
+                    ]
+               }                
+             ]
+        }
+
+4. Logout
+  URL: /api/v1/student/logout
+  PARAMS: none
+  METHOD: GET
+  
+  Response:
+    + Success:
+      - Status: 200
+      - Response: {'auth_token' => nil}
+      
+    + Failure:
+      - Status: 401
+      account not authorized
+
+5. Save test results
+  URL: /api/v1/student/save_result
+  PARAMS: { :test_id => id, result... }
+  METHOD: POST
+  
+  Response:
