@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
   
+  namespace :api do
+    namespace :v1 do
+      post 'login', to: 'authentication#login'
+      
+      scope :student do
+        get 'all_tests', to: 'students#list'
+        get 'get_test/:id', to: 'students#show'
+        get 'logout', to: 'students#logout'
+      end
+      
+      post 'student/save_result', to: 'students#save_test_result'
+    end
+  end
+  
   scope module: 'admin' do
     resources :users
     resources :tests

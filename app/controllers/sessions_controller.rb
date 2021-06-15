@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_action :authorize, only: [:new, :create, :destroy]
+  skip_before_action :http_authorize, only: [:new, :create, :destroy]
   
   # login page
   def new

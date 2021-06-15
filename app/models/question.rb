@@ -8,6 +8,7 @@ class Question < ApplicationRecord
   validate :valid_options, on: [:create, :update]
   
   #
+  before_validation :init_options
   after_initialize :init_options  
   before_save :store_options
   
@@ -23,6 +24,7 @@ class Question < ApplicationRecord
     real_options = []
     _options_changed = false
     
+    logger.debug "INIT #{self.options}, #{self._options}, #{self.json_options}"
     # params from form
     if self._options
       self._options.each do |i, raw_option|
@@ -40,13 +42,14 @@ class Question < ApplicationRecord
         
     self.options = real_options
     store_options if _options_changed
+    logger.debug "AFTER INIT #{self.options}, #{self._options}, #{self.json_options}"
   end
   
   # do validation on options
   def valid_options
     valid = true
     has_one_checked = false
-    
+    logger.debug "VALID #{self.options}, #{options}, #{self.json_options}"
     self.options.each do |option|
       valid = false if option.invalid?
       has_one_checked = true if option.correct?
@@ -55,6 +58,8 @@ class Question < ApplicationRecord
     errors.add(:base, 'Question must have at least 1 option!') if self.options.empty?
     errors.add(:base, 'Question must have at least 1 correct option!') if !self.options.empty? && !has_one_checked
     errors.add(:options, 'All must have text!') if !valid
+    
+    logger.debug "ERROR #{errors.inspect}"
   end
   
   # store options as json

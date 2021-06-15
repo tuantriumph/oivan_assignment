@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :authorize
+  before_action :http_authorize
   helper_method :current_user, :logged_in?
   
   # return the current logged-in user
@@ -14,8 +14,8 @@ class ApplicationController < ActionController::Base
   
   private
   
-  #
-  def authorize    
+  # authorize normal http requests
+  def http_authorize    
     redirect_to login_path, alert: 'Authorization required' if !logged_in? 
   end
   
