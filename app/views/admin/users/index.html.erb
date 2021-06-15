@@ -1,6 +1,10 @@
-<%= button_to 'New user', new_user_path, :method => :get %><br>
+<%= button_to 'New user', new_user_path, :method => :get, class: "btn btn-primary min-width-btn" %><br>
 
-<table border="1">
+<div class="container-fluid">
+<p id="notice"><% notice %></p>
+<p id="alert"><%= alert %></p>
+  
+<table class="table">
 <thead>
   <tr>
     <th>Name</th>
@@ -24,3 +28,5 @@
 <% end %>
 </tbody>
 </table>
+
+</div>

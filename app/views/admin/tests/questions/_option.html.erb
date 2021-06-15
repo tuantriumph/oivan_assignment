@@ -1,8 +1,8 @@
 <%= fields_for(option) do |form| %>
 <div class="option" id="option_<%= index %>" data-index=<%= index %> >
   <% if option.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(option.errors.count, "error") %> prohibited this option from being saved:</h2>
+    <div id="error_explanation" class="alert alert-danger" role="alert">
+      <h5><%= pluralize(option.errors.count, "error") %> prohibited this option from being saved:</h5>
 
       <ul>
         <% option.errors.each do |error| %>
@@ -12,10 +12,18 @@
     </div>
   <% end %>
 
-  <div class="field">
-  <%= form.text_field :text, name: "test[questions_attributes][#{question_index}][_options][#{index}][text]" %>
-  Correct answer <%= form.check_box :correct, name: "test[questions_attributes][#{question_index}][_options][#{index}][correct]", class: 'option_checkbox' %>
+  <div class="form-group">
+  <table width="100%">
+  <tr width="100%">
+  <td width="50%" style="padding: 0px;">
+  <%= form.text_field :text, name: "test[questions_attributes][#{question_index}][_options][#{index}][text]", class: "form-control" %>
+  </td>
+  <td>
+  Correct answer <%= form.check_box :correct, name: "test[questions_attributes][#{question_index}][_options][#{index}][correct]", class: 'option_checkbox form-check-label' %>
   <%= link_to 'X', 'javascript:void(0);', class: 'option_remove_link' %>
+  <td>
+  </tr>
+  </table>
   </div>
 </div>
 <% end %>

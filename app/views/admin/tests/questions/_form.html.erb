@@ -3,7 +3,7 @@
   <hr>
   <% if question.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
+      <h5><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h5>
 
       <ul>
         <% question.errors.each do |error| %>
@@ -13,13 +13,21 @@
     </div>
   <% end %>
 
-  <div class="field">
-  <%= form.text_field :label, placeholder: 'Question label...', class: 'questions_label' %>
-  <%= link_to 'X', 'javascript:void(0);', class: 'question_remove_link' %>  
+  <div class="form-group">
+  <table width="70%">
+  <tr width="100%">
+  <td style="padding: 0px;">
+  <%= form.text_field :label, placeholder: 'Question label...', class: "questions_label form-control" %>
+  </td>
+  <td>
+  <%= link_to 'X', 'javascript:void(0);', class: 'question_remove_link' %>
+  </td>
+  </tr>
+  </table>
   </div>
   
-  <div class="field">
-  <%= form.text_area :desc, name: "test[questions_attributes][#{index}][desc]", placeholder: 'Question description...', class: 'questions_desc' %>
+  <div class="form-group" style="width: 70%;">
+  <%= form.text_area :desc, name: "test[questions_attributes][#{index}][desc]", placeholder: 'Question description...', class: 'questions_desc form-control' %>
   </div>
   
   <div class="options" id="options">
@@ -31,5 +39,5 @@
   <%  %>
   <%= form.check_box :_destroy if question.id %>
 <% end %>
-<%= button_tag '+ Option', type: 'button', id: 'add_option_btn', data: {question_index: index} %>
+<%= button_tag '+ Option', type: 'button', id: 'add_option_btn', data: {question_index: index}, class: "btn btn-light min-width-btn" %>
 </div>

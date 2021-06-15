@@ -1,13 +1,13 @@
 <table>
   <tr>
   <td>
-    <%= button_to 'Back', tests_path, :method => :get %>
+    <%= button_to 'Back', tests_path, :method => :get, class: "btn btn-light min-width-btn" %>
   </td>
   <td>
-    <%= button_tag 'Save', id: 'test_save_btn' %>
+    <%= button_tag 'Save', id: 'test_save_btn', class: 'btn btn-primary min-width-btn'  %>
   </td>
   <td>
-    <%= button_tag '+ Question', id: 'add_question_btn' %>
+    <%= button_tag '+ Question', id: 'add_question_btn', class: 'btn btn-primary min-width-btn' %>
   </td>
   </tr>
 </table>
@@ -15,7 +15,7 @@
 <%= form_for(test, remote: true, html: {id: 'test_form'}) do |form| %>
   <% if test.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(test.errors.count, "error") %> prohibited this test from being saved:</h2>
+      <h5><%= pluralize(test.errors.count, "error") %> prohibited this test from being saved:</h5>
 
       <ul>
         <% test.errors.each do |error| %>
@@ -25,17 +25,17 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, placeholder: 'Test name...' %>
+  <div class="form-group">
+    <strong>Name</strong>
+    <%= form.text_field :name, placeholder: 'Test name...', class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :desc %>
-    <%= form.text_area :desc, placeholder: 'Test description...' %>
+  <div class="form-group">
+    <strong>Description</strong>
+    <%= form.text_area :desc, placeholder: 'Test description...', class: "form-control" %>
   </div>
   
-  <div class="actions" style="display: none;">
+  <div class="form-group" style="display: none;">
   <%= form.submit %>
   </div>
   

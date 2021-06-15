@@ -1,23 +1,24 @@
 <table>
   <tr>
   <td>
-    <%= button_to 'Back', admin_tests_path, :method => :get %>
+    <%= button_to 'Back', tests_path, :method => :get, class: "btn btn-light min-width-btn" %>
   </td>
   <td>
-    <%= button_to 'Edit', edit_admin_test_path(@test), :method => :get %>
+    <%= button_to 'Edit', [:edit, @test], :method => :get, class: 'btn btn-primary min-width-btn' %>
   </td>
   </tr>
 </table>
 
-<p>
-  <strong>Name:</strong>
-  <%= @test.name %>
-</p>
+<div class="container-fluid">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Desc:</strong>
-  <%= @test.desc %>
-</p>
-
-<%= link_to 'Edit', edit_admin_test_path(@test) %> |
-<%= link_to 'Back', admin_tests_path %>
+  <div class="form-group mb-3">
+    <strong>Name:</strong>
+    <%= @test.name %>
+  </div>
+  
+  <div class="form-group mb-3">
+    <strong>Desc:</strong>
+    <%= @test.desc %>
+  </div>
+</div>

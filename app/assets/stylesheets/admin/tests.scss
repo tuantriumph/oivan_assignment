@@ -3,12 +3,18 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 .question {
-  padding-left: 10px;
-  padding-bottom: 10px;
+  padding-left: 20px;
+  
+  .form-group {
+    padding-top: 5px;
+  }
   
   .options {
-    padding-left: 15px;
-    padding-bottom: 5px;
+    padding-left: 40px;
+   
+    
+    .form-control {
+    }
   }
   
   #option_0 {
@@ -17,6 +23,10 @@
   
   input[type=checkbox][id$="_destroy"] {
     display: none;
+  }
+  
+  .form-control {
+    
   }
 }
 

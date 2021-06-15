@@ -1,6 +1,10 @@
-<%= button_to 'New test', new_test_path, :method => :get %>
-<br>
-<table border="1">
+<%= button_to 'New test', new_test_path, :method => :get, class: "btn btn-primary min-width-btn" %>
+
+<div class="container-fluid">
+<p id="notice"><% notice %></p>
+<p id="alert"><%= alert %></p>
+
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>

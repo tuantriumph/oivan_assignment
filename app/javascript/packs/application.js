@@ -8,11 +8,14 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
-import '../bootstrap_js_files.js'  
+//import '../bootstrap_js_files.js'  
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+import "bootstrap"
+import "bootstrap/scss/bootstrap.scss"
 
 // include jQuery in global and window scope (so you can access it globally)
 var jQuery = require('jquery')
