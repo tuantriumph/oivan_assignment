@@ -3,12 +3,12 @@ class Question < ApplicationRecord
   #has_and_belongs_to_many :tests
   belongs_to :test
   
-  attr_accessor :options, 
+  attr_accessor :options, # Option-obj parsed from json_options
                 :_options # hash params from form
   validate :valid_options, on: [:create, :update]
   
   #
-  before_validation :init_options
+  #before_validation :init_options
   after_initialize :init_options  
   before_save :store_options
   
@@ -24,7 +24,7 @@ class Question < ApplicationRecord
     real_options = []
     _options_changed = false
     
-    logger.debug "B-INIT #{self.options}, #{self._options}, #{self.json_options}"
+    logger.debug "BEF-INIT #{self.options}, #{self._options}, #{self.json_options}"
     # params from form
     if self._options
       self._options.each do |i, raw_option|
@@ -42,7 +42,7 @@ class Question < ApplicationRecord
         
     self.options = real_options
     store_options if _options_changed
-    logger.debug "A-INIT #{self.options}, #{self._options}, #{self.json_options}"
+    logger.debug "AFT-INIT #{self.options}, #{self._options}, #{self.json_options}"
   end
   
   # do validation on options
