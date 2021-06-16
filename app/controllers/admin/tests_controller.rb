@@ -17,7 +17,7 @@ class Admin::TestsController < ApplicationController
   end
 
   # edit test
-  def edit    
+  def edit
   end
 
   # create new test
@@ -38,7 +38,7 @@ class Admin::TestsController < ApplicationController
   # update existing test
   def update
     respond_to do |format|
-      p test_params[:questions_attributes]
+      
       if @test.update(test_params)
         notice = "Test updated successfully!"
         format.js 
@@ -60,8 +60,9 @@ class Admin::TestsController < ApplicationController
   
   # load test object
   def preload_test
+    #logger.debug "PRELOADING..."
     @test = Test.find params[:id]
-    @test.questions.map(&:load_options)
+    #@test.questions.map(&:load_options)
   end
 
   # Only allow a list of trusted parameters through.
