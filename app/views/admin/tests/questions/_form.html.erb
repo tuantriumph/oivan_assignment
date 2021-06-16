@@ -1,4 +1,5 @@
-<div class="question" id="question_<%= index %>" data-index=<%= index %> data-qid=<%= question.id %>>
+<li id="question_<%= index %>" data-index=<%= index %> data-qid="<%= question.id %>" class="question list-group-item">
+
 <%= pform.fields_for :questions, question do |form| %>
 
   <% if question.errors.any? %>
@@ -13,32 +14,29 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-  <table width="70%">
-  <tr width="100%">
-  <td style="padding: 0px;">
-  <%= form.text_field :label, placeholder: 'Question label...', class: "questions_label form-control form-control-sm" %>
-  </td>
-  <td>
-  <%= link_to 'X', 'javascript:void(0);', class: 'question_remove_link' %>
-  </td>
-  </tr>
-  </table>
+  <div class="input-group mb-1">  
+    <%= form.text_field :label, placeholder: 'Question label...', class: "questions_label form-control" %>
+    <span class="input-group-text" id="basic-addon1">
+      <%= link_to 'X', 'javascript:void(0);', class: 'question_remove_link' %>
+    </span>    
   </div>
   
-  <div class="form-group" style="width: 70%;">
-  <%= form.text_area :desc, name: "test[questions_attributes][#{index}][desc]", placeholder: 'Question description...', class: 'questions_desc form-control form-control-sm' %>
-  </div>
+  <div class="input-group mb-1">  
+    <%= form.text_area :desc, name: "test[questions_attributes][#{index}][desc]", placeholder: 'Question description...', class: 'questions_desc form-control' %>
+  </div>  
   
-  <div class="options" id="options">    
+  <div class="input-group mb-1" id="options">
     <%= render partial: 'admin/tests/questions/option', locals: {question_index: index, option: Option.new, index: 0} %>
     <% question.options.each_with_index do |o, i| %>
       <%= render partial: 'admin/tests/questions/option', locals: {question_index: index, option: o, index: i+1} %>
-    <% end %>    
+    <% end %>
   </div>
   
-  <%= form.check_box :_destroy if question.id %>
+  <div class="input-group mb-1">
+    <%= button_tag '+ Option', type: 'button', id: 'add_option_btn', data: {question_index: index}, class: "btn btn-light min-width-btn btn-sm" %>
+    <%= form.check_box :_destroy if question.id %>
+  </div>
   
 <% end %>
-<%= button_tag '+ Option', type: 'button', id: 'add_option_btn', data: {question_index: index}, class: "btn btn-light min-width-btn" %>
-</div>
+
+</li>

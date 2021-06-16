@@ -3,7 +3,7 @@ $(document).ready(function() {
   $('body').on('click', '#test_save_btn', function() {
       // remove template question/option form
       $('#question_0').remove();
-      $('.question .options #option_0').remove()
+      $('#questions').find('.question').find('#option_0').remove();
       
       // trigger submit
       $('form#test_form')[0].requestSubmit();      
@@ -42,8 +42,9 @@ $(document).ready(function() {
       // modify add option button data-question-index
       qF.find('#add_option_btn').attr('data-question-index', cI);
       
-      // append new question
-      $('#questions').append(qF);
+      // append new question      
+      $('ol#questions').append(qF);
+      //qF.show();
     }    
   );    
   
@@ -68,8 +69,7 @@ $(document).ready(function() {
   // append blank option to current question
   $('body').on('click', '#add_option_btn', function() {
       // find current question index
-      var qI = $(this).attr('data-question-index');
-      //console.log(qI);
+      var qI = $(this).attr('data-question-index');      
       
       // search for option_0 div, it should always be there
       var oF = $('#question_' + qI + ' #option_0').clone(); // optionForm                  
@@ -93,7 +93,7 @@ $(document).ready(function() {
       oF.find('input#option_correct')[0].name = 'test[questions_attributes][' + qI + '][_options][' + cI + '][correct]';
       
       // append new option
-      $('div#question_' + qI + ' div#options').append(oF);      
+      $('#question_' + qI + ' #options').append(oF);      
     }    
   );
   

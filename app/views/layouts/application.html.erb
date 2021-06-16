@@ -12,18 +12,26 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-light bg-light" style="margin-bottom: 10px;">    
-    <a class="navbar-brand" href="/">Admin panel</a>
-    <form class="form-inline">    
+    <ul class="nav nav-tabs justify-content-end">
       <% if current_user %>
-      Hello <%= current_user.name %>!    
-      <%= link_to "Users", users_path, class: "btn btn-outline-primary", role: "button" %>    
-      <%= link_to "Tests", tests_path, class: "btn btn-outline-primary", role: "button" %>
-      <%= link_to "Logout", logout_path, :method => :delete, class: "btn btn-outline-primary" %>
-      <% end %>
-    </form>
-    </nav>
       
+      <span class="navbar-text me-2">
+        <strong><%= current_user.email %></strong>
+      </span>
+      
+      <li class="nav-item">
+        <%= link_to "Users", users_path, class: "nav-link #{controller.controller_name == 'users' ? 'active' : ''}" %>
+      </li>
+      
+      <li class="nav-item">
+        <%= link_to "Tests", tests_path, class: "nav-link #{controller.controller_name == 'tests' ? 'active' : ''}" %>
+      </li
+      
+      <li class="nav-item">
+        <%= link_to "Logout", logout_path, :method => :delete, class: "nav-link" %>
+      </li>
+      <% end %>
+    </ul>  
     
     <%= yield %>
   </body>
