@@ -28,8 +28,8 @@ class Question < ApplicationRecord
     self.options = []
     _options_changed = false
     
-    logger.debug "Q#{self.id} - INIT"
-    logger.debug "    OB: #{self.options ? self.options.size : nil}, #{self._options ? self._options.size : nil}, #{self.json_options ? self.json_options.size : nil}"
+    #logger.debug "Q#{self.id} - INIT"
+    #logger.debug "    OB: #{self.options ? self.options.size : nil}, #{self._options ? self._options.size : nil}, #{self.json_options ? self.json_options.size : nil}"
     # params from form
     if self._options
       #logger.debug "  LOAD FROM _options"
@@ -48,14 +48,14 @@ class Question < ApplicationRecord
     # need to update the _json_options attribute whenever _options has data (form update) 
     #    for validation in case question has no change
     store_options if _options_changed    
-    logger.debug "    OA: #{self.options ? self.options.size : nil}, #{self._options ? self._options.size : nil}, #{self.json_options ? self.json_options.size : nil}"
+    #logger.debug "    OA: #{self.options ? self.options.size : nil}, #{self._options ? self._options.size : nil}, #{self.json_options ? self.json_options.size : nil}"
   end
   
   # do validation on options
   def valid_options
     valid = true
     has_one_checked = false
-    logger.debug "Q#{self.id} OV: #{self.id}: #{self.options ? self.options.size : nil}, #{self._options ? self._options.size : nil}, #{self.json_options ? self.json_options.size : nil}"
+    #logger.debug "Q#{self.id} OV: #{self.id}: #{self.options ? self.options.size : nil}, #{self._options ? self._options.size : nil}, #{self.json_options ? self.json_options.size : nil}"
     
     self.options.each do |option|
       valid = false if option.invalid?
@@ -66,7 +66,7 @@ class Question < ApplicationRecord
     errors.add(:options, 'Question must have at least 1 correct option!') if !self.options.empty? && !has_one_checked
     errors.add(:options, 'All must have text!') if !valid
     
-    logger.debug "    ERROR #{errors.full_messages}"
+    #logger.debug "    ERROR #{errors.full_messages}"
   end
   
   # store options as json
