@@ -15,27 +15,27 @@
   
   <div class="form-group mb-3">
     <%= f.label :name, class: "form-label" %> 
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "form-control form-control-sm" %>
   </div>
   
   <div class="form-group mb-3">
     <%= f.label :email, class: "form-label" %> 
-    <%= f.email_field :email %>
+    <%= f.email_field :email, class: "form-control form-control-sm" %>
   </div>
   
   <div class="form-group mb-3">
     <%= f.label :password, class: "form-label" %> 
-    <%= f.password_field :password, class:"form-control" %>
+    <%= f.password_field :password, class:"form-control form-control-sm" %>
   </div>
   
   <div class="form-group mb-3">
     <%= f.label :password_confirmation, class: "form-label" %>
-    <%= f.password_field :password_confirmation, class:"form-control" %>
+    <%= f.password_field :password_confirmation, class:"form-control form-control-sm" %>
   </div>
   
   <div class="form-group mb-3">
     <%= f.label :role, class: "form-label" %> 
-    <%= f.select :role, User.roles, class: "form-select" %>
+    <%= f.select :role, User.roles, {}, {class: "form-control form-select-sm"} %>
   </div>
   
   <div class="form-group mb-3">

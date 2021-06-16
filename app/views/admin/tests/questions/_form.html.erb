@@ -1,6 +1,6 @@
 <div class="question" id="question_<%= index %>" data-index=<%= index %> data-qid=<%= question.id %>>
 <%= pform.fields_for :questions, question do |form| %>
-  <hr>
+
   <% if question.errors.any? %>
     <div id="error_explanation">
       <h5><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h5>
@@ -17,7 +17,7 @@
   <table width="70%">
   <tr width="100%">
   <td style="padding: 0px;">
-  <%= form.text_field :label, placeholder: 'Question label...', class: "questions_label form-control" %>
+  <%= form.text_field :label, placeholder: 'Question label...', class: "questions_label form-control form-control-sm" %>
   </td>
   <td>
   <%= link_to 'X', 'javascript:void(0);', class: 'question_remove_link' %>
@@ -27,7 +27,7 @@
   </div>
   
   <div class="form-group" style="width: 70%;">
-  <%= form.text_area :desc, name: "test[questions_attributes][#{index}][desc]", placeholder: 'Question description...', class: 'questions_desc form-control' %>
+  <%= form.text_area :desc, name: "test[questions_attributes][#{index}][desc]", placeholder: 'Question description...', class: 'questions_desc form-control form-control-sm' %>
   </div>
   
   <div class="options" id="options">
