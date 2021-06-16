@@ -8,9 +8,9 @@ Rails.application.routes.draw do
         get 'all_tests', to: 'students#list'
         get 'get_test/:id', to: 'students#show'
         get 'logout', to: 'students#logout'
+        post 'save_result', to: 'students#save_test_result'
       end
       
-      post 'student/save_result', to: 'students#save_test_result'
     end
   end
   
@@ -30,10 +30,6 @@ Rails.application.routes.draw do
   post 'sessions/create' 
   get '/login', to: 'sessions#new'
   delete '/logout', to: 'sessions#destroy'
-  
-  # default admin page
-  #get '/', to: '/admin/users'
-  #get '/admin', to: '/admin/users'
-  
+    
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

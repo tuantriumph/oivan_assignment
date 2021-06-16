@@ -29,7 +29,6 @@ class Api::V1::StudentsController < ApplicationController
 
   # save test result
   def save_test_result
-    logger.debug "PARAMS #{params}"
     render json: { message: "Test result can not be saved now." }, status: :ok
   end
   
