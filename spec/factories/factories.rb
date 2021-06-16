@@ -28,7 +28,7 @@ def create_some_tests
     
     test_ids << test.id
   end
-=begin  
+  
   FactoryBot.create(:test, name: 'Q & A', desc: 'Answer the question') do |test|
     jopts = [{text: 'country', correct: true}, {text: 'place', correct: true}, {text: 'hat', correct: false}]
     FactoryBot.build(:question, label: 'Vietnam is a', desc: 'simple enough', json_options: jopts.to_json, test: test).save
@@ -41,6 +41,6 @@ def create_some_tests
     
     test_ids << test.id
   end    
-=end 
+
   test_ids
 end
