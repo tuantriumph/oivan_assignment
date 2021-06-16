@@ -65,6 +65,5 @@ class Admin::UsersController < ApplicationController
   # Only allow a list of trusted parameters through.
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :role)
-                         .tap{|u| u[:role] = u[:role].to_i}
   end  
 end

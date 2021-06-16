@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       if user.teacher?
         session[:user_id] = user.id        
       else
-        alert = 'User can not login!'
+        alert = 'Only teacher can login!'
       end
     else
       alert = 'User not found!'
