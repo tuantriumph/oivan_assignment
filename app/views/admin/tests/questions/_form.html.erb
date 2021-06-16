@@ -30,14 +30,15 @@
   <%= form.text_area :desc, name: "test[questions_attributes][#{index}][desc]", placeholder: 'Question description...', class: 'questions_desc form-control form-control-sm' %>
   </div>
   
-  <div class="options" id="options">
+  <div class="options" id="options">    
     <%= render partial: 'admin/tests/questions/option', locals: {question_index: index, option: Option.new, index: 0} %>
     <% question.options.each_with_index do |o, i| %>
       <%= render partial: 'admin/tests/questions/option', locals: {question_index: index, option: o, index: i+1} %>
     <% end %>    
   </div>
-  <%  %>
+  
   <%= form.check_box :_destroy if question.id %>
+  
 <% end %>
 <%= button_tag '+ Option', type: 'button', id: 'add_option_btn', data: {question_index: index}, class: "btn btn-light min-width-btn" %>
 </div>

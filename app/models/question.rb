@@ -4,6 +4,8 @@ class Question < ApplicationRecord
   
   attr_accessor :options, # Option-obj parsed from json_options
                 :_options # hash params from form
+                
+  # validate options                
   validate :valid_options, on: [:create, :update]
   
   #
@@ -20,34 +22,32 @@ class Question < ApplicationRecord
   end
       
   private
-  
+    
   # init options
   def init_options
-    model_options = []
+    self.options = []
     _options_changed = false
     
     logger.debug "Q#{self.id} - INIT"
     logger.debug "    OB: #{self.options ? self.options.size : nil}, #{self._options ? self._options.size : nil}, #{self.json_options ? self.json_options.size : nil}"
     # params from form
     if self._options
-      #logger.debug "    _OPTIONS"
+      #logger.debug "  LOAD FROM _options"
       self._options.each do |i, raw_option|
         option = Option.new(text: raw_option[:text], correct: raw_option[:correct].to_i == 1)
         option.validate
-        model_options << option
+        self.options << option
       end
       _options_changed = true
     # load from json_options
     elsif self.json_options
-      #logger.debug "    _JSON_OPTIONS"
-      model_options = JSON.parse(self.json_options).map{|e| Option.new(e)}
+      #logger.debug "  LOAD FROM _json_options"
+      self.options = JSON.parse(self.json_options).map{|e| Option.new(e)}
     end
         
-    # contains Option-obj array
-    self.options = model_options
-    # need to update the _json_options attribute whenever _options has data (form update)
-    store_options if _options_changed
-    
+    # need to update the _json_options attribute whenever _options has data (form update) 
+    #    for validation in case question has no change
+    store_options if _options_changed    
     logger.debug "    OA: #{self.options ? self.options.size : nil}, #{self._options ? self._options.size : nil}, #{self.json_options ? self.json_options.size : nil}"
   end
   

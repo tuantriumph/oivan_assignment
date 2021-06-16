@@ -1,8 +1,11 @@
 $(document).ready(function() {
   // trigger ajax submit on new/edit test form
   $('body').on('click', '#test_save_btn', function() {
+      // remove template question/option form
       $('#question_0').remove();
       $('.question .options #option_0').remove()
+      
+      // trigger submit
       $('form#test_form')[0].requestSubmit();      
     }
   ); 
@@ -94,9 +97,9 @@ $(document).ready(function() {
     }    
   );
   
-  // remove the blank question form
-  $('body').on('click', 'a.option_remove_link', function() {      
-      $(this).closest('.option').remove();
+  // remove the option
+  $('body').on('click', 'a.option_remove_link', function() {
+      $(this).closest('.option').remove();      
     }    
   );
 });

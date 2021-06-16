@@ -17,7 +17,7 @@ class Admin::TestsController < ApplicationController
   end
 
   # edit test
-  def edit
+  def edit    
   end
 
   # create new test
@@ -36,7 +36,7 @@ class Admin::TestsController < ApplicationController
   end
 
   # update existing test
-  def update
+  def update        
     respond_to do |format|
       
       if @test.update(test_params)
@@ -67,6 +67,11 @@ class Admin::TestsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def test_params
+    logger.debug "RAW #{params}"
+    if params[:test][:questions_attributes]
+      params[:test][:questions_attributes].each{|k, v| v[:_options] ||= []}
+    end
+    logger.debug "RAW #{params}"
     params.require(:test).permit(:name, :desc, questions_attributes: {})
   end
       
